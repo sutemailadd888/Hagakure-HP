@@ -1,11 +1,23 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import { FadeIn } from "@/components/fade-in"
 
 export function HeroSection() {
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  // スクロールを検知して状態を切り替える
+  useEffect(() => {
+    const handleScroll = () => {
+      // 10pxでもスクロールしたら、インジケーターを消す判定にする
+      setIsScrolled(window.scrollY > 10)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
-    // min-h-screen を min-h-[100dvh] に変更（スマホのURLバーを考慮した完璧な全画面）
     <section className="relative flex min-h-[100dvh] flex-col items-center justify-center px-6 overflow-hidden">
       
       {/* 背景画像セクション（最背面） */}
@@ -34,25 +46,18 @@ export function HeroSection() {
         </FadeIn>
       </div>
 
-      {/* スクロールインジケーター（画面下部の縦線ギミック） */}
-      <FadeIn className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3" delay={0.8}>
-        <span className="font-serif text-[10px] tracking-[0.3em] text-[#EAEAEA]/70 uppercase">
+      {/* スクロールインジケーター（スマホのみ表示、静的な美しさ、スクロールで消失） */}
+      <div 
+        className={`absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-4 transition-opacity duration-700 md:hidden ${
+          isScrolled ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+      >
+        <span className="font-serif text-[10px] tracking-[0.3em] text-[#EAEAEA]/40 uppercase">
           Scroll
         </span>
-        {/* 縦線のレール（薄いグレー） */}
-        <div className="relative h-16 w-[1px] overflow-hidden bg-[#EAEAEA]/20">
-          {/* 動く光の線（白い線が上から下へ流れる） */}
-          <div className="absolute left-0 top-0 h-full w-full bg-[#EAEAEA] animate-[scroll_2s_ease-in-out_infinite]" />
-        </div>
-      </FadeIn>
-
-      {/* 縦線アニメーション用のCSS */}
-      <style dangerouslySetInnerHTML={{__html: `
-        @keyframes scroll {
-          0% { transform: translateY(-100%); }
-          100% { transform: translateY(100%); }
-        }
-      `}} />
+        {/* 動かない、透過した極細の縦線 */}
+        <div className="h-12 w-[1px] bg-[#EAEAEA]/30" />
+      </div>
       
     </section>
   )
