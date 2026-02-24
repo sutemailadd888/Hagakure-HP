@@ -5,10 +5,10 @@ import { FadeIn } from "@/components/fade-in"
 
 export function HeroSection() {
   return (
-    // min-h-screen を min-h-[100dvh] に変更（スマホのURLバーを考慮した完璧な全画面）
+    // スマホのURLバーを考慮した完璧な全画面高さ (dvh)
     <section className="relative flex min-h-[100dvh] flex-col items-center justify-center px-6 overflow-hidden">
       
-      {/* 背景画像セクション（最背面） */}
+      {/* 背景画像セクション */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/hero-bg.jpg" 
@@ -20,7 +20,7 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-[#1A1A1A]/60" />
       </div>
 
-      {/* テキストコンテンツ（前面） */}
+      {/* メインテキスト */}
       <div className="relative z-10 flex flex-col items-center">
         <FadeIn className="text-center">
           <h1 className="font-serif text-4xl leading-relaxed tracking-[0.15em] text-[#EAEAEA] md:text-5xl lg:text-6xl drop-shadow-md">
@@ -34,23 +34,62 @@ export function HeroSection() {
         </FadeIn>
       </div>
 
-      {/* スクロールインジケーター（画面下部の縦線ギミック） */}
-      <FadeIn className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3" delay={0.8}>
-        <span className="font-serif text-[10px] tracking-[0.3em] text-[#EAEAEA]/70 uppercase">
+      {/* 筆文字風スクロールインジケーター */}
+      <FadeIn className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-4" delay={0.8}>
+        <span className="font-serif text-[10px] tracking-[0.3em] text-[#EAEAEA]/80 uppercase">
           Scroll
         </span>
-        {/* 縦線のレール（薄いグレー） */}
-        <div className="relative h-16 w-[1px] overflow-hidden bg-[#EAEAEA]/20">
-          {/* 動く光の線（白い線が上から下へ流れる） */}
-          <div className="absolute left-0 top-0 h-full w-full bg-[#EAEAEA] animate-[scroll_2s_ease-in-out_infinite]" />
+        
+        {/* SVGによる筆の縦線アニメーション */}
+        <div className="relative h-20 w-6">
+          <svg
+            viewBox="0 0 16 80"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-full w-full"
+          >
+            {/* 筆の質感を持ったパスデータ。真っ直ぐではなく、微妙な揺らぎと墨の溜まりを表現。
+              strokeDasharray と strokeDashoffset をCSSで操作して「描く」動きを作る。
+            */}
+            <path
+              d="M8.5 2C8.5 2 7.5 15 8 25C8.5 35 9 45 8.5 55C8 65 7 78 7 78"
+              stroke="#EAEAEA"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="brush-stroke opacity-80"
+              vectorEffect="non-scaling-stroke"
+            />
+          </svg>
         </div>
       </FadeIn>
 
-      {/* 縦線アニメーション用のCSS */}
+      {/* 筆で描くようなアニメーションのCSS定義 */}
       <style dangerouslySetInnerHTML={{__html: `
-        @keyframes scroll {
-          0% { transform: translateY(-100%); }
-          100% { transform: translateY(100%); }
+        .brush-stroke {
+          stroke-dasharray: 80; /* パスの長さ */
+          stroke-dashoffset: 80; /* 初期状態は線を隠す */
+          animation: brushDraw 2.5s ease-in-out infinite;
+        }
+
+        @keyframes brushDraw {
+          0% {
+            stroke-dashoffset: 80;
+            opacity: 0;
+          }
+          15% {
+            opacity: 1;
+          }
+          50% {
+            stroke-dashoffset: 0; /* 線が完全に描画された状態 */
+          }
+          85% {
+            opacity: 1;
+          }
+          100% {
+            stroke-dashoffset: 0;
+            opacity: 0; /* 最後はフッと消える */
+          }
         }
       `}} />
       
