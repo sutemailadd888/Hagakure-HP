@@ -2,6 +2,7 @@
 
 import { FadeIn } from "@/components/fade-in"
 
+// v0が生成した美しいデータ構造をそのまま維持
 const sakeList = [
   {
     number: "01",
@@ -33,16 +34,30 @@ export function SakeSection() {
   return (
     <section className="px-6 py-32 md:py-40">
       <div className="mx-auto max-w-2xl">
+        
+        {/* ▼ 新しいタイポグラフィ（左揃えでリストと軸を合わせる） ▼ */}
         <FadeIn>
-          <h2 className="font-sans text-xs tracking-[0.35em] text-foreground/40 uppercase">
-            {"This Month's Sake"}
+          <div className="flex flex-col">
+            <span className="font-sans text-xs tracking-[0.35em] text-foreground/50 uppercase">
+              FEATURE Nº 01
+            </span>
+            <span className="mt-2 font-sans text-[10px] tracking-[0.25em] text-foreground/40">
+              2026.03
+            </span>
+          </div>
+        </FadeIn>
+        
+        <FadeIn delay={0.1}>
+          <h2 className="mt-12 flex items-center gap-6 font-serif text-2xl tracking-[0.15em] text-foreground md:text-3xl">
+            {/* 左揃えのレイアウトに合わせ、ダッシュで美しくインデント（字下げ）する表現 */}
+            <span className="h-[1px] w-8 bg-foreground/30 md:w-12"></span>
+            春の四篇。
+            <span className="h-[1px] w-8 bg-foreground/30 md:w-12"></span>
           </h2>
         </FadeIn>
-        <FadeIn delay={0.1}>
-          <p className="mt-4 font-serif text-sm tracking-[0.15em] text-foreground/50">
-            葉隠選定録：2026.03
-          </p>
-        </FadeIn>
+        {/* ▲ ここまで ▲ */}
+
+        {/* ▼ v0の完璧なリストUIをそのまま復元 ▼ */}
         <div className="mt-16 space-y-12 md:mt-20 md:space-y-16">
           {sakeList.map((sake, index) => (
             <FadeIn key={sake.number} delay={index * 0.08}>
@@ -60,6 +75,7 @@ export function SakeSection() {
                     </p>
                   </div>
                 </div>
+                {/* 絶妙な余白（pl-8）によるインデント */}
                 <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 pl-8">
                   {sake.tags.map((tag) => (
                     <span
@@ -74,6 +90,7 @@ export function SakeSection() {
             </FadeIn>
           ))}
         </div>
+        
       </div>
     </section>
   )
