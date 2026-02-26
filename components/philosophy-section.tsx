@@ -5,18 +5,18 @@ import { FadeIn } from "@/components/fade-in"
 export function PhilosophySection() {
   return (
     <section className="px-6 py-32 md:py-48 bg-background">
-      {/* 全体の text-center を外し、左寄せを基準にする */}
-      <div className="mx-auto max-w-3xl">
+      {/* max-w-2xl に変更し、ApproachやSakeセクションと「見出しの左端のスタート位置」を完全に一致させる */}
+      <div className="mx-auto max-w-2xl">
         
-        {/* ▼ セクションタイトル（左寄せで固定：Featureセクションと完全に同じスタイル） ▼ */}
+        {/* ▼ セクションタイトル（左揃えで統一） ▼ */}
         <FadeIn>
-          <h2 className="font-sans text-xs tracking-[0.35em] text-foreground/50 uppercase mb-20 md:mb-28">
+          <h2 className="font-sans text-xs tracking-[0.35em] text-foreground/40 uppercase text-left">
             Philosophy
           </h2>
         </FadeIn>
 
-        {/* ▼ コンテンツエリア（ここだけを中央寄せにして、非対称の美しさを出す） ▼ */}
-        <div className="flex flex-col items-center text-center">
+        {/* ▼ 本文エリア（ここからはユーザーの意図通り、美しく中央揃え） ▼ */}
+        <div className="mt-20 text-center md:mt-28">
           
           {/* キラーフレーズ */}
           <FadeIn delay={0.1}>
@@ -46,7 +46,6 @@ export function PhilosophySection() {
           </FadeIn>
           
         </div>
-        
       </div>
     </section>
   )
