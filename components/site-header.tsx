@@ -40,7 +40,7 @@ export function SiteHeader() {
         
         {/* Instagramアイコン */}
         <a
-          href="https://instagram.com"
+          href="https://www.instagram.com/bar_hagakure_omu?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Instagram"
