@@ -89,3 +89,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* PC表示時のみデフォルトカーソルを非表示にする設定 */
+@media (pointer: fine) {
+  .hide-default-cursor,
+  .hide-default-cursor * {
+    cursor: none !important;
+  }
+}
