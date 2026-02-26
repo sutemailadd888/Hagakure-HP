@@ -28,7 +28,7 @@ export function SiteFooter() {
 
         {/* ▼ Instagramへの美しい導線 ▼ */}
         <a
-          href="https://instagram.com" // 実際のInstagramのURLに差し替えてください
+          href="https://www.instagram.com/blooming_kitchen0906?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" // 実際のInstagramのURLに差し替えてください
           target="_blank"
           rel="noopener noreferrer"
           className="mt-16 inline-flex items-center gap-3 border-b border-foreground/20 pb-1 font-sans text-[10px] tracking-[0.2em] text-foreground/50 uppercase transition-all duration-500 hover:border-foreground hover:text-foreground md:text-xs"
