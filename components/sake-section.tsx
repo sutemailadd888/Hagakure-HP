@@ -150,10 +150,11 @@ export function SakeSection() {
           </FadeIn>
         </div>
         
-        {/* ▼ 案2: 次号予告（Next Issue Teaser） ▼ */}
-        <div className="mt-40 text-center md:mt-48">
-          <FadeIn delay={0.2}>
-            <p className="font-sans text-[10px] tracking-[0.3em] text-foreground/30 uppercase">
+        {/* ▼ 次号予告（Next Issue Teaser） ▼ */}
+        {/* マトリクスと全く同じルール（border-t）を適用し、完全に別のブロックとして独立させました */}
+        <div className="mt-24 border-t border-foreground/10 pt-16 text-center md:mt-32 md:pt-24">
+          <FadeIn>
+            <p className="font-sans text-[10px] tracking-[0.3em] text-foreground/40 uppercase">
               Next Feature Nº 02 — Coming in April 2026
             </p>
           </FadeIn>
