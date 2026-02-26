@@ -28,35 +28,50 @@ const approaches = [
 
 export function ApproachSection() {
   return (
-    <section className="px-6 py-32 md:py-40">
+    <section className="px-6 py-32 md:py-48 bg-background">
       <div className="mx-auto max-w-2xl">
+        
+        {/* セクションタイトル（左揃えの軸をキープ） */}
         <FadeIn>
           <h2 className="font-sans text-xs tracking-[0.35em] text-foreground/40 uppercase">
             Approach
           </h2>
         </FadeIn>
-        <div className="mt-16 space-y-20 md:mt-24 md:space-y-28">
+
+        <div className="mt-16 space-y-16 md:mt-24 md:space-y-24">
           {approaches.map((item, index) => (
             <FadeIn key={item.number} delay={index * 0.1}>
-              <article>
-                <div className="flex items-baseline gap-4">
-                  <span className="font-sans text-xs tracking-[0.3em] text-foreground/30">
-                    {item.number}.
+              {/* ▼ ヘアライン（極細の罫線）を追加し、上部に余白を取る ▼ */}
+              <article className="border-t border-foreground/10 pt-8 md:pt-12">
+                
+                <div className="flex flex-col gap-2">
+                  {/* ナンバリングを「Nº」システムに統合 */}
+                  <span className="font-sans text-[10px] tracking-[0.3em] text-foreground/40 uppercase">
+                    Approach Nº {item.number}
                   </span>
-                  <h3 className="font-serif text-xl tracking-[0.12em] text-foreground md:text-2xl">
-                    {item.title}
-                  </h3>
+                  
+                  {/* タイトルとサブタイトルを美しく配置 */}
+                  <div className="flex flex-col md:flex-row md:items-baseline md:gap-6 mt-2">
+                    <h3 className="font-serif text-2xl tracking-[0.12em] text-foreground md:text-3xl">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 font-serif text-sm tracking-[0.15em] text-foreground/60 md:mt-0">
+                      {/* サブタイトルも明朝体にすることで、Curation(英)との対比を際立たせる */}
+                      — {item.subtitle}
+                    </p>
+                  </div>
                 </div>
-                <p className="mt-3 font-sans text-xs tracking-[0.15em] text-foreground/50">
-                  {item.subtitle}
-                </p>
-                <p className="mt-6 font-sans text-sm leading-[2] tracking-[0.04em] text-foreground/60 md:text-base md:leading-[2]">
+
+                {/* 本文（Philosophyと同じように行間をたっぷりとる） */}
+                <p className="mt-6 font-serif text-sm leading-[2.2] tracking-[0.08em] text-foreground/70 md:mt-8 md:text-base md:leading-[2.2]">
                   {item.description}
                 </p>
+                
               </article>
             </FadeIn>
           ))}
         </div>
+        
       </div>
     </section>
   )
