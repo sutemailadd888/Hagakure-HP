@@ -23,10 +23,11 @@ export function SiteHeader() {
           : "bg-[#1A1A1A]/20 backdrop-blur-md" 
       }`}
     >
-      {/* 変更点：スマホ時の余白を「px-8」に拡大（より内側へ）。
-        PC時は変わらずワイドに（md:px-12 lg:px-16）。
+      {/* 変更点：max-w-[1400px] という広すぎる箱を捨て、
+        最初の美しいバランスだった max-w-5xl (約1024px) に回帰。
+        スマホの余白も px-6 に戻し、PCは md:px-8 のストイックな配置へ。
       */}
-      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-8 py-5 md:px-12 lg:px-16">
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5 md:px-8">
         
         {/* 文字のみのストイックなロゴ */}
         <span 
