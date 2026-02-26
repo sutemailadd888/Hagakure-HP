@@ -42,7 +42,7 @@ export function ApproachSection() {
           {approaches.map((item, index) => (
             <FadeIn key={item.number} delay={index * 0.1}>
               {/* ▼ ヘアライン（極細の罫線）を追加し、上部に余白を取る ▼ */}
-              <article className="border-t border-foreground/10 pt-8 md:pt-12">
+              <article className="border-t border-foreground/10 pt-8 md:pt-12 first:border-t-0 first:pt-0">
                 
                 <div className="flex flex-col gap-2">
                   {/* ナンバリングを「Nº」システムに統合 */}
